@@ -14,9 +14,8 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 /**
- * @author duxianchao
- * @version 1.0
- * @created 08-七月-2016 16:01:41
+ * @author chenwj
+ * 
  */
 public class IxpPropertyManager {
 
@@ -38,7 +37,7 @@ public class IxpPropertyManager {
 	}
 
 	/**
-	 * 给据文件全路径获取该文件
+	 * 根据文件全路径获取该文件
 	 * @param filePath
 	 * @return
 	 */
@@ -46,6 +45,11 @@ public class IxpPropertyManager {
 		return loadProperty(filePath);
 	}
 
+	/**
+	 * 根据文件全路径加载文件
+	 * @param filePath
+	 * @return
+	 */
 	private Properties loadProperty(String filePath){
 		if (null == filePath || "".equals(filePath)){
 			log.error("文件全路径不能为空");
@@ -71,6 +75,11 @@ public class IxpPropertyManager {
 		return ppt;
 	}
 	
+	/**
+	 * 根据文件名加载文件
+	 * @param fileName
+	 * @return
+	 */
 	public Properties loadFileProperty(String fileName){
 		if (null == fileName || "".equals(fileName)){
 			log.error("文件名不能为空");

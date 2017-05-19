@@ -16,10 +16,10 @@ import com.cramc.amq.poolFactory.AMQPoolReceiver;
 import com.cramc.amq.poolFactory.AMQPoolSender;
 /**
  * AMQ调度管理器
- * @author duxianchao 该调度器实现了2种方式的AMQ调度： 1、使用连接池方式的发送接收消息 2、使用非连接池方式的发送接收消息
+ * 该调度器实现了2种方式的AMQ调度： 1、使用连接池方式的发送接收消息 2、使用非连接池方式的发送接收消息
  * 目前只支持发送Map和Text消息，如果需要其他类型的消息可在此基础上进行扩展
- * @version 1.0
- * @updated 08-七月-2016 16:00:21
+ * @author chenwj
+ *
  */
 public class AMQManager {
 	

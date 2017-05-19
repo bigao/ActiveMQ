@@ -13,9 +13,7 @@ import javax.jms.TextMessage;
 import org.apache.log4j.Logger;
 /**
  * 消息转换处理监听类
- * @author duxianchao
- * @version 1.0
- * @updated 08-七月-2016 16:00:20
+ * @author chenwj
  */
 public abstract class AbsListener implements MessageListener
 {

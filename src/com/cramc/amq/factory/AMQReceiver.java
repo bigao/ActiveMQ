@@ -11,9 +11,8 @@ import com.cramc.amq.exception.AMQFactoryException;
 import com.cramc.amq.exception.AMQReceiverException;
 /**
  * AMQ接受消息管理类
- * @author duxianchao
- * @version 1.0
- * @updated 08-七月-2016 16:00:21
+ * @author chenwj
+ * 
  */
 public class AMQReceiver{
 	 private ReentrantLock lock = new ReentrantLock();//互斥锁

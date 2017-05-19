@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
+
 import javax.jms.JMSException;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 
-import com.cramc.amq.AMQManager;
 import com.cramc.amq.common.AbsListener;
 import com.cramc.amq.exception.AMQFactoryException;
 import com.cramc.amq.exception.AMQReceiverException;

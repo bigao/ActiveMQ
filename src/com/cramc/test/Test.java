@@ -18,25 +18,25 @@ public class Test{
 	public static void main(String[] args) {
 		
 		try {
+			//消息生产者发送消息
 			AMQFactory amqFactory = new AMQFactory();
 			MessageProducer producer =  amqFactory.getProducer("FirstQueue", MessageType.Queue);
 			TextMessage testMessage = amqFactory.getTextMessage("999");
 					System.out.println("消息生成者发送消息：" + testMessage.getText());
 			producer.send(testMessage);
 			
+			//消息消费者消费消息
 			MessageConsumer consumer = amqFactory.getConsumer("FirstQueue", MessageType.Queue) ;
 			consumer.setMessageListener(new MessageListener() {
-				
 				@Override
 				public void onMessage(Message message) {
-					
 					String messageText = null; 
 					if (message instanceof TextMessage) {  
 		                TextMessage textMessage = (TextMessage) message;  
 		                try {
 		                	//打印收到的信息
 							messageText = textMessage.getText();
-							System.out.println("从客户端收到的消息 " + messageText);  
+							System.out.println("消息消费者消费消息： " + messageText);  
 							
 		                } catch (JMSException e) {
 							e.printStackTrace();

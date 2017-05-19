@@ -5,9 +5,7 @@ import javax.jms.MessageConsumer;
 import javax.jms.Session;
 /**
  * consumer池对象
- * @author duxianchao
- * @version 1.0
- * @updated 08-七月-2016 16:00:22
+ * 
  */
 public class ConsumerPool {
 

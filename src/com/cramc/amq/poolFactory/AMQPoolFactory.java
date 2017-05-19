@@ -23,9 +23,8 @@ import com.cramc.util.IxpPropertyManager;
 
 /**
  * AMQ连接池管理类
- * @author duxianchao
- * @version 1.0
- * @updated 08-七月-2016 16:00:21
+ * @author chenwj
+ * 
  */
 @SuppressWarnings("unused")
 public class AMQPoolFactory {

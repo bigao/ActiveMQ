@@ -10,7 +10,7 @@ import Decoder.BASE64Decoder;
 import Decoder.BASE64Encoder;
 
 /**
- * 锟斤拷锟杰斤拷锟杰癸拷锟斤拷锟斤拷
+ * DES加密工具类
  * @author duxianchao
  */
 public class DESUtil {

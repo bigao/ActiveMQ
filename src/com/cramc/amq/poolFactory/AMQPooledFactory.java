@@ -12,7 +12,7 @@ import org.apache.activemq.pool.PooledConnectionFactory;
 import com.cramc.util.DESUtil;
 /**
  * AMQ本身自带的连接池用法
- * @author duxianchao
+ * @author chenwj
  * @since activemq-all-5.13.2(需要JDK1.7及以上) 暂未使用
  */
 @SuppressWarnings("unused")

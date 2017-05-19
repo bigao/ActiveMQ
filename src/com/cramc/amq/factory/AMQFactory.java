@@ -27,9 +27,8 @@ import com.cramc.util.DESUtil;
 import com.cramc.util.IxpPropertyManager;
 /**
  * AMQ实现工厂
- * @author duxianchao
- * @version 1.0
- * @updated 08-七月-2016 16:00:20
+ * @author chenwj
+ * 
  */
 public class AMQFactory {
 	 private IxpPropertyManager pptUtil = IxpPropertyManager.getInstance();

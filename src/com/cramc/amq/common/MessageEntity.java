@@ -3,9 +3,8 @@ package com.cramc.amq.common;
 import java.util.Map;
 /**
  * 消息类
- * @author duxianchao
- * @version 1.0
- * @updated 08-七月-2016 16:00:25
+ * @author chenwj
+ * 
  */
 public class MessageEntity {
 

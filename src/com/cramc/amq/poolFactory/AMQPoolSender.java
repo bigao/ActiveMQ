@@ -6,13 +6,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
+
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
-import com.cramc.amq.AMQManager;
 import com.cramc.amq.common.MessageEntity;
 import com.cramc.amq.exception.AMQFactoryException;
 import com.cramc.amq.exception.AMQReceiverException;

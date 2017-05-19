@@ -5,9 +5,8 @@ import javax.jms.Connection;
 import javax.jms.Session;
 /**
  * session池对象
- * @author duxianchao
- * @version 1.0
- * @updated 08-七月-2016 16:00:25
+ * @author chenwj
+ * 
  */
 public class SessionPool {
 	private Connection connection;
