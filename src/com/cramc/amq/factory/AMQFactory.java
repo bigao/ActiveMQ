@@ -60,7 +60,7 @@ public class AMQFactory {
  		config = pptUtil.getProperty(configPath);
  		URL = config.getProperty("URL");
  		userName = config.getProperty("userName");
- 		password = DESUtil.deCode(config.getProperty("password"));//密码解密
+ 		password = DESUtil.decrypt(config.getProperty("password"));//密码解密
      }
      
      private void initFactory() throws AMQFactoryException{

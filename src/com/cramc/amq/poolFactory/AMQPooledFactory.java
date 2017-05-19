@@ -29,7 +29,7 @@ public class AMQPooledFactory {
 	private void loadConfig(Properties ppt){
 		this.URL = ppt.getProperty("URL");
 		this.userName = ppt.getProperty("userName");
-		this.password = DESUtil.deCode(ppt.getProperty("password"));
+		this.password = DESUtil.decrypt(ppt.getProperty("password"));
 		this.maxConnections = Integer.parseInt(ppt.getProperty("maxConnections"));
 		this.maxSessionPerConnection = Integer.parseInt(ppt.getProperty("maxSessionPerConnection"));
 		this.reconnectOnException = Boolean.parseBoolean(ppt.getProperty("reconnectOnException"));

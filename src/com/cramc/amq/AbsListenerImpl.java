@@ -1,6 +1,12 @@
 package com.cramc.amq;
 
 import java.util.Map;
+
+import com.cramc.amq.common.MessageType;
+import com.cramc.amq.common.QueueName;
+import com.cramc.amq.exception.AMQFactoryException;
+import com.cramc.amq.exception.AMQReceiverException;
+import com.cramc.amq.exception.AMQSendException;
 /**
  * 消息处理类，处理监听到的消息
  * @author chenwj

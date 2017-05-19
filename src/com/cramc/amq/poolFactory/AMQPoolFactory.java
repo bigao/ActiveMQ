@@ -71,7 +71,7 @@ public class AMQPoolFactory {
 		config = pptUtil.getProperty(filePath);
 		URL = config.getProperty("URL");
 		userName = config.getProperty("userName");
-		password = DESUtil.deCode(config.getProperty("password"));//密码解密
+		password = DESUtil.decrypt(config.getProperty("password"));//密码解密
 		maxConnection = Integer.parseInt(config.getProperty("maxConnections"));
 		minConnection = Integer.parseInt(config.getProperty("minConnections"));
 		maxSesstionPerConnection = Integer.parseInt(config.getProperty("maxSessionPerConnection"));
