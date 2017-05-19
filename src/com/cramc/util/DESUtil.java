@@ -10,34 +10,83 @@ import Decoder.BASE64Decoder;
 import Decoder.BASE64Encoder;
 
 /**
- * DES加密工具类
- * @author duxianchao
+ * DES加密、解密工具类
+ * @author chenwj
  */
 public class DESUtil {
-	  private static final String strKey = "Middle and re assets";//锟街凤拷锟斤拷钥写锟斤拷锟斤拷锟斤拷锟节硷拷锟杰斤拷锟斤拷使锟斤拷
-	  private Key key;
-	  private byte[] byteMi = null;
-	  private byte[] byteMing = null;
-	  private String strMi= "";
-	  private String strM= ""; 
-	  //  锟斤拷莶锟斤拷锟斤拷锟斤拷KEY   
+	  private static final String strKey = "Middle and re assets";  
+	  private Key key;                   //秘钥
+	  private byte[] byteMi = null;      //密文数组
+	  private byte[] byteMing = null;    //明文数组
+	  private String strMi= "";          //密文
+	  private String strMing= "";        //明文
+	  
+	  
+	 /**
+	  * 加密
+	  * @param strMing 明文
+	  * @return
+	  */
+	  public static String encrypt(String strMing){
+		  DESUtil des = new DESUtil();
+		  des.setKey(strKey);
+		  des.setEncString(strMing);
+		  return des.getStrMi();
+	  }
+		  
+	  /**
+	   * 解密
+	   * @param strMing 密文
+	   * @return
+	   */
+	  public static String decrypt(String strMi){
+		  DESUtil des = new DESUtil();
+		  des.setKey(strKey);
+		  des.setDesString(strMi);   
+		  return des.getStrMing();
+	  }
+	  
+	  /**
+	   * 获取密文
+	   * @return
+	   */
+	  private String getStrMi(){
+		  return strMi;
+	  }
+		 
+	  /**
+	   * 获取明文
+	   * @return
+	   */
+	 private String getStrMing(){
+		 return strMing;
+	 }
+	
+	  /**
+	   * 生成秘钥
+	   * @param strKey
+	   */
 	  private void setKey(String strKey){ 
 	   try{  
-	        KeyGenerator _generator = KeyGenerator.getInstance("DES");  
-	        _generator.init(new SecureRandom(strKey.getBytes()));  
-	        this.key = _generator.generateKey();  
-	        _generator=null;
+	        KeyGenerator generator = KeyGenerator.getInstance("DES");  
+	        generator.init(new SecureRandom(strKey.getBytes()));     //选择DES加密，秘钥长度必须为56位
+	        this.key = generator.generateKey();  
+	        generator=null;
 	    }catch(Exception e){
 	    	e.printStackTrace();
 	     }
-	   
-	    }  
-	  //  锟斤拷锟斤拷String锟斤拷锟斤拷锟斤拷锟斤拷,String锟斤拷锟斤拷锟斤拷锟� 
+	   }  
+	  
+	
+	  /**
+	   * 先用DES加密，再用base64加密
+	   * @param strMing
+	   */
 	  private void setEncString(String strMing){
 	    BASE64Encoder base64en = new BASE64Encoder();  
 	    try {
 		      this.byteMing = strMing.getBytes("UTF8");  
-		      this.byteMi = this.getEncCode(this.byteMing);  
+		      this.byteMi = this.desEncrypt(this.byteMing);  
 		      this.strMi = base64en.encode(this.byteMi);
 	     }catch(Exception e){
 	    	 e.printStackTrace();
@@ -46,13 +95,17 @@ public class DESUtil {
 	      this.byteMi = null;
 	      }
 	  }  
-	  // 锟斤拷锟斤拷:锟斤拷String锟斤拷锟斤拷锟斤拷锟斤拷,String锟斤拷锟斤拷锟斤拷锟�  
+	  
+	 /**
+	  * 先用base64解密，再用DES解密
+	  * @param strMi
+	  */
 	  private void setDesString(String strMi){  
 		  BASE64Decoder base64De = new BASE64Decoder();   
 	      try{
 		      this.byteMi = base64De.decodeBuffer(strMi);  
-		      this.byteMing = this.getDesCode(byteMi);  
-		      this.strM = new String(byteMing,"UTF8");  
+		      this.byteMing = this.desDecrypt(byteMi);  
+		      this.strMing = new String(byteMing,"UTF8");  
 	      }catch(Exception e){
 	          e.printStackTrace();
 	      }finally{
@@ -62,14 +115,19 @@ public class DESUtil {
 	      }  
 	  
 	  }
-	  //锟斤拷锟斤拷锟斤拷byte[]锟斤拷锟斤拷锟斤拷锟斤拷,byte[]锟斤拷锟斤拷锟斤拷锟�   
-	  private byte[] getEncCode(byte[] byteS){
+	  
+	  /**
+	   * DES加密
+	   * @param byteMing 明文数组 
+	   * @return
+	   */
+	  private byte[] desEncrypt(byte[] byteMing){
 		   byte[] byteFina = null;  
 		   Cipher cipher;  
 	      try{
 		      cipher = Cipher.getInstance("DES");  
 		      cipher.init(Cipher.ENCRYPT_MODE,key);  
-		      byteFina = cipher.doFinal(byteS);
+		      byteFina = cipher.doFinal(byteMing);
 	      }catch(Exception e){
 	    	  e.printStackTrace();
 	      }finally{
@@ -78,55 +136,26 @@ public class DESUtil {
 	      return byteFina;
 	  } 
 
-	  // 锟斤拷锟斤拷锟斤拷byte[]锟斤拷锟斤拷锟斤拷锟斤拷,锟斤拷byte[]锟斤拷锟斤拷锟斤拷锟�   
-	 private byte[] getDesCode(byte[] byteD){
+	  
+	  /**
+	   * DES解密
+	   * @param byteD
+	   * @return
+	   */
+	 private byte[] desDecrypt(byte[] byteD){
 	    Cipher cipher;  
 	    byte[] byteFina=null;  
 	    try{
-		      cipher = Cipher.getInstance("DES");  
-		      cipher.init(Cipher.DECRYPT_MODE,key);  
-		      byteFina = cipher.doFinal(byteD);
+	        cipher = Cipher.getInstance("DES");  
+	        cipher.init(Cipher.DECRYPT_MODE,key);  
+	        byteFina = cipher.doFinal(byteD);
 	    }catch(Exception e){
-		   System.out.println("锟斤拷锟斤拷锟侥诧拷锟斤拷DES锟斤拷锟杰ｏ拷getDescCode(byte[] byteD)锟斤拷锟斤拷锟斤拷锟斤拷失锟斤拷");
 		   e.printStackTrace();
 	    }finally{
 	      cipher=null;
 	      }  
 	    return byteFina;
 	  } 
-	  //锟斤拷锟截硷拷锟杰猴拷锟斤拷锟斤拷锟絪trMi  
-	 private String getStrMi()
-	  {
-	   return strMi;
-	  }
-	  //锟斤拷锟截斤拷锟杰猴拷锟斤拷锟斤拷锟�
-	 private String getStrM()
-	  {
-	   return strM;
-	  }
-	  
-	  /**
-	   * 锟斤拷锟杰凤拷锟斤拷
-	   * @param strM 要锟斤拷锟杰碉拷锟斤拷锟斤拷
-	   * @return
-	   */
-	  public static String enCode(String strM){
-		  DESUtil des = new DESUtil();
-		  des.setKey(strKey);
-		  des.setEncString(strM);//锟斤拷要锟斤拷锟杰碉拷锟斤拷锟侥达拷锟酵革拷Encrypt.java锟斤拷锟叫硷拷锟杰硷拷锟姐。
-		  return des.getStrMi();
-	  }
-	  
-	  /**
-	   * 锟斤拷锟杰凤拷锟斤拷
-	   * @param strMi 要锟斤拷锟杰碉拷锟斤拷锟斤拷
-	   * @return
-	   */
-	  public static String deCode(String strMi){
-		  DESUtil des = new DESUtil();
-		  des.setKey(strKey);
-		  des.setDesString(strMi);   //锟斤拷要锟斤拷锟杰碉拷锟斤拷锟斤拷
-		  return des.getStrM();
-	  }
-	  
+	 
+	 
 }
