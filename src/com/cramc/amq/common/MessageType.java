@@ -8,11 +8,11 @@ package com.cramc.amq.common;
 public class MessageType {
 
 	/**
-	 * topic用于发布订阅模式
+	 * topic类型用于发布订阅模式
 	 */
 	public static final String Topic = "Topic";
 	/**
-	 * queue用于点对点模式
+	 * queue类型用于点对点模式
 	 */
 	public static final String Queue = "Queue";
 	

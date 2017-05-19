@@ -1,4 +1,4 @@
-package com.cramc.amq.common;
+package com.cramc.amq;
 
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -13,13 +13,14 @@ import javax.jms.TextMessage;
 import org.apache.log4j.Logger;
 /**
  * 消息转换处理监听类
+ * 目前只支持处理Map消息和Text消息，如果需要其他类型的消息可在此基础上进行扩展
  * @author chenwj
  */
 public abstract class AbsListener implements MessageListener
 {
 	private Logger log = Logger.getLogger(AbsListener.class);
-	public abstract void DealWithMsgMapValue(Map<String, Object> dicMap);
-    public abstract void DealWithMsgTextValue(String text);
+	public abstract void dealWithMsgMapValue(Map<String, Object> dicMap);  //Map消息处理方法
+    public abstract void dealWithMsgTextValue(String text);                //Text消息处理方法
     @Override
     @SuppressWarnings("unchecked")
 	public void onMessage(Message message){
@@ -34,14 +35,14 @@ public abstract class AbsListener implements MessageListener
  					    dicMap.put(key, mapMsg.getObject(key));
  					}
  	            //Map消息监听接口
- 	            this.DealWithMsgMapValue(dicMap);
+ 	            this.dealWithMsgMapValue(dicMap);
  	            return;
  	        }else if (message instanceof TextMessage){
  	        	TextMessage textMsg = (TextMessage) message;
  	            String text;
  					text = textMsg.getText();
  	            //Text消息监听接口
- 	            this.DealWithMsgTextValue(text);
+ 	            this.dealWithMsgTextValue(text);
  	            return;
  	        }
          }catch (JMSException e) {

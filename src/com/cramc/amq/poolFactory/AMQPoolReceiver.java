@@ -9,7 +9,7 @@ import javax.jms.JMSException;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 
-import com.cramc.amq.common.AbsListener;
+import com.cramc.amq.AbsListener;
 import com.cramc.amq.exception.AMQFactoryException;
 import com.cramc.amq.exception.AMQReceiverException;
 import com.cramc.amq.poolFactory.pool.ConsumerPool;

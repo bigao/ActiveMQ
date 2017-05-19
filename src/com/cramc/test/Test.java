@@ -8,15 +8,18 @@ import javax.jms.MessageListener;
 import javax.jms.MessageProducer;
 import javax.jms.TextMessage;
 
+import com.cramc.amq.AMQManager;
+import com.cramc.amq.common.MessageEntity;
 import com.cramc.amq.common.MessageType;
 import com.cramc.amq.exception.AMQFactoryException;
+import com.cramc.amq.exception.AMQSendException;
 import com.cramc.amq.factory.AMQFactory;
 
 
 public class Test{
 
 	public static void main(String[] args) {
-		
+		/*
 		try {
 			//消息生产者发送消息
 			AMQFactory amqFactory = new AMQFactory();
@@ -36,7 +39,7 @@ public class Test{
 		                try {
 		                	//打印收到的信息
 							messageText = textMessage.getText();
-							System.out.println("消息消费者消费消息： " + messageText);  
+							System.out.println("消息消费者消费消息： " + textMessage);  
 							
 		                } catch (JMSException e) {
 							e.printStackTrace();
@@ -51,6 +54,18 @@ public class Test{
 		} catch(JMSException e){
 			e.printStackTrace();
 		}
+		*/
+		
+		try {
+			AMQManager manager =  AMQManager.getInstance();
+			manager.init(false);
+			manager.sendTextMsg("Hello World!", "FirstQueue", MessageType.Queue);
+			manager.setListener("FirstQueue", cls, MessageType.Queue);
+			
+		} catch (AMQFactoryException | AMQSendException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 	

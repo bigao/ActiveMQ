@@ -38,7 +38,6 @@ public class AMQFactory {
      private Session consumerSession;//消费者session
      boolean ifCreateP = false;//生产者session是否建立的标志
      boolean ifCreateC = false;//消费者session是否建立的标志
-//     private String URL = "tcp://127.0.0.1:61616";
      private String URL = "tcp://192.168.71.130:61616";
      private String userName = "admin";
      private String password = "admin";

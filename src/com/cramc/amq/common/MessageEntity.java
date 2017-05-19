@@ -8,8 +8,9 @@ import java.util.Map;
  */
 public class MessageEntity {
 
-	private Map<String,Object> headMap;
-	private Map<String,Object> bodyMap;
+	private Map<String,Object> headMap;  //消息头
+	private Map<String,Object> bodyMap;  //消息内容
+	
 	public Map<String, Object> getHeadMap() {
 		return headMap;
 	}
