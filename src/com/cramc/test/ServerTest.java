@@ -8,6 +8,11 @@ import com.cramc.amq.exception.AMQFactoryException;
 import com.cramc.amq.exception.AMQReceiverException;
 import com.cramc.amq.exception.AMQSendException;
 
+/**
+ * 测试类（模拟消息消费者）
+ * @author chenwj
+ *
+ */
 public class ServerTest {
 	
 	public static void main(String[] args) {

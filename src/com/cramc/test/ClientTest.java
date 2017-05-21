@@ -9,7 +9,7 @@ import com.cramc.amq.exception.AMQReceiverException;
 import com.cramc.amq.exception.AMQSendException;
 
 /**
- * 测试类
+ * 测试类（模拟消息生产者）
  * @author chenwj
  *
  */

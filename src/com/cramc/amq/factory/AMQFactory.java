@@ -272,6 +272,30 @@ public class AMQFactory {
      }
      
      /**
+      * 释放producer连接
+      * @param producerName
+      * @return
+      * @throws AMQFactoryException
+      */
+     public boolean disposeProducerByName(String producerName) throws AMQFactoryException{
+    	 if (producerPool.size() > 0){
+             List<String> keyC = new ArrayList<String>(producerPool.keySet());
+             try {
+	             for(String key : keyC){
+	            	 if(key.equals(producerName)){
+	            		 producerPool.get(key).close();
+	            		 producerPool.remove(key);
+	            		 return true;
+	            	 }
+	             }
+             } catch (JMSException e) {
+            	 throw new AMQFactoryException("Dispose Producer Error",e);
+             }
+         }
+    	 return false;
+     }
+     
+     /**
       * 释放consumer连接
       * @param consumerName
       * @return
@@ -294,4 +318,5 @@ public class AMQFactory {
          }
     	 return false;
      }
+     
 }

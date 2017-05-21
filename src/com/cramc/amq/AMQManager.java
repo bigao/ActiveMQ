@@ -402,6 +402,17 @@ public class AMQManager {
          return  poolSender.disposeAllProducer() && poolReceiver.disposeAllConsumer() && poolFactory.disposeAll();
       }
      
+     
+     /**
+      * 释放producer连接
+      * @param producerName
+      * @return
+      * @throws AMQFactoryException
+      */
+     public boolean disposeProducerByName(String producerName) throws AMQFactoryException{
+    	 return factory.disposeProducerByName(producerName);
+     }
+     
      /**
       * 释放consumer连接
       * @param consumerName
@@ -410,6 +421,17 @@ public class AMQManager {
       */
      public boolean disposeConsumerByName(String consumerName) throws AMQFactoryException{
     	 return factory.disposeConsumerByName(consumerName);
+     }
+     
+     
+     /**
+      * 释放池中单个producer连接
+      * @param producerName
+      * @return
+      * @throws AMQReceiverException
+      */
+     public boolean disposePoolProducerByName(String producerName) throws  AMQReceiverException{
+    	 return poolSender.disposeProducer(poolFactory,producerName);
      }
      
      /**
@@ -422,14 +444,5 @@ public class AMQManager {
     	 return poolReceiver.disposeConsumer(poolFactory,consumerName);
      }
      
-     /**
-      * 释放池中单个producer连接
-      * @param producerName
-      * @return
-      * @throws AMQReceiverException
-      */
-     public boolean disposePoolProducerByName(String producerName) throws  AMQReceiverException{
-    	 return poolSender.disposeProducer(poolFactory,producerName);
-     }
 
 }
